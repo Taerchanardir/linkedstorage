@@ -9,6 +9,7 @@ import net.kyrptonaught.linkedstorage.util.LinkedInventoryHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.GenericContainerScreenHandler;
 import net.minecraft.screen.ScreenHandler;
@@ -43,7 +44,7 @@ public class LinkedContainer extends GenericContainerScreenHandler {
         super.onSlotClick(slotId, clickData, actionType, player);
     }
 
-    public static ExtendedScreenHandlerFactory createScreenHandlerFactory(DyeChannel channel) {
+    public static ExtendedScreenHandlerFactory createScreenHandlerFactory(DyeChannel channel, ItemStack stack) {
         return new ExtendedScreenHandlerFactory() {
             @Override
             public ScreenHandler createMenu(int syncId, PlayerInventory inventory, PlayerEntity player) {
@@ -53,7 +54,11 @@ public class LinkedContainer extends GenericContainerScreenHandler {
 
             @Override
             public Text getDisplayName() {
+              if(stack!=null && stack.hasCustomName()){
+                return stack.getName();
+              } else {
                 return Text.translatable("container.linkedstorage");
+            }
             }
 
             @Override

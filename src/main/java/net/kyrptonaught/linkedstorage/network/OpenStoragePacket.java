@@ -23,7 +23,9 @@ public class OpenStoragePacket {
             BlockPos pos = buf.readBlockPos();
             server.execute(() -> {
                 World world = player.getEntityWorld();
-                player.openHandledScreen(LinkedContainer.createScreenHandlerFactory(LinkedInventoryHelper.getBlockChannel(world, pos)));
+                player.openHandledScreen(LinkedContainer.createScreenHandlerFactory(LinkedInventoryHelper.getBlockChannel(world, pos), null));
+                // This is the one that gets called when opening a storage block in the world, which currently don't retain their names
+                // null replaces stack, until we find what it should be
             });
         });
     }

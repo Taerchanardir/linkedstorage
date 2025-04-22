@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "net.kyrptonaught.linkedstorage.mixin",
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "SimpleInventoryMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
+

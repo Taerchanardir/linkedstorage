@@ -15,6 +15,10 @@ repositories {
 	maven { url "https://maven.kyrptonaught.dev" }
 	maven { url "https://maven.shedaniel.me/" }
 	maven { url "https://maven.terraformersmc.com/releases" }
+
+  maven {
+    url = "https://api.modrinth.com/maven"
+  }
 }
 
 dependencies {
@@ -24,13 +28,20 @@ dependencies {
 	modImplementation  "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	modCompileOnly('net.kyrptonaught:quickshulker:1.4.0-1.20')
+  modCompileOnly "maven.modrinth:lithium:mc1.20.1-0.11.2"
+
 }
 
 processResources {
 	inputs.property "version", project.version
+  inputs.property "minecraft_version", project.minecraft_version
+  inputs.property "loader_version", project.loader_version
+
 
 	filesMatching("fabric.mod.json") {
-		expand "version": project.version
+		expand "version": project.version,
+      "minecraft_version": project.minecraft_version,
+      "loader_version": project.loader_version
 	}
 }
 

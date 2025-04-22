@@ -1,11 +1,18 @@
 package net.kyrptonaught.linkedstorage.inventory;
 
+import net.kyrptonaught.linkedstorage.access.ISimpleInventoryMixinInterface;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.Direction;
 
-public class LinkedInventory extends SimpleInventory implements SidedInventory {
+import me.jellysquid.mods.lithium.api.inventory.LithiumInventory;
+//import me.jellysquid.mods.lithium.common.hopper.LithiumStackList;
+//import org.spongepowered.asm.mixin.Shadow;
+
+
+public class LinkedInventory extends SimpleInventory implements SidedInventory, LithiumInventory{
 
     public LinkedInventory() {
         super(27);
@@ -38,5 +45,19 @@ public class LinkedInventory extends SimpleInventory implements SidedInventory {
             copy.setStack(i, this.getStack(i).copy());
 
         return copy;
+    }
+
+
+    // lithium integrations, so we can optimise away 1 million failed inserts/minute
+
+    @Override
+    public DefaultedList<ItemStack> getInventoryLithium(){
+      return this.stacks;
+    }
+
+
+    @Override
+    public void setInventoryLithium(DefaultedList<ItemStack> inventory){
+      ((ISimpleInventoryMixinInterface)this).setStacks(inventory);
     }
 }

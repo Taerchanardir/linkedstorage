@@ -15,7 +15,7 @@ public class Quickshulker implements RegisterQuickShulker {
                 .supportsBundleing(true)
                 .getBundleInv((player, stack) -> LinkedStorageMod.getInventory(LinkedInventoryHelper.getItemChannel(stack)))
                 .setOpenAction((player, stack) -> {
-                    player.openHandledScreen(LinkedContainer.createScreenHandlerFactory(LinkedInventoryHelper.getItemChannel(stack)));
+                    player.openHandledScreen(LinkedContainer.createScreenHandlerFactory(LinkedInventoryHelper.getItemChannel(stack), stack));
                 })
                 .canOpenInHand(false)
                 .register();

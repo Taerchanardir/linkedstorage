@@ -44,7 +44,7 @@ public class StorageItem extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
         ItemStack stack = playerEntity.getStackInHand(hand);
         if (!world.isClient) {
-            playerEntity.openHandledScreen(LinkedContainer.createScreenHandlerFactory(LinkedInventoryHelper.getItemChannel(stack)));
+            playerEntity.openHandledScreen(LinkedContainer.createScreenHandlerFactory(LinkedInventoryHelper.getItemChannel(stack),stack));
         }
         return new TypedActionResult<>(ActionResult.SUCCESS, stack);
     }

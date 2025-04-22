@@ -15,6 +15,7 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.*;
@@ -179,4 +180,13 @@ public class StorageBlock extends HorizontalFacingBlock implements BlockEntityPr
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return world.isClient & type == blockEntity ? (world1, pos, state1, blockEntity) -> ((OpenableBlockEntity) blockEntity).clientTick() : null;
     }
+
+    // Prevent chickens and villagers getting stuck on hoppers with linked chests on top
+    @Override
+    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type){
+      return false;
+    }
+
+
+    
 }
