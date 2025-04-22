@@ -5,8 +5,6 @@ import net.minecraft.util.collection.DefaultedList;
 
 public interface ISimpleInventoryMixinInterface{
 
-  //DefaultedList<ItemStack> getStacks();
-
   void setStacks(DefaultedList<ItemStack> stacks);
 
 }

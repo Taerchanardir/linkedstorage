@@ -8,8 +8,6 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.Direction;
 
 import me.jellysquid.mods.lithium.api.inventory.LithiumInventory;
-//import me.jellysquid.mods.lithium.common.hopper.LithiumStackList;
-//import org.spongepowered.asm.mixin.Shadow;
 
 
 public class LinkedInventory extends SimpleInventory implements SidedInventory, LithiumInventory{
@@ -48,13 +46,11 @@ public class LinkedInventory extends SimpleInventory implements SidedInventory, 
     }
 
 
-    // lithium integrations, so we can optimise away 1 million failed inserts/minute
-
+    // lithium integrations. These functions are called by lithium
     @Override
     public DefaultedList<ItemStack> getInventoryLithium(){
       return this.stacks;
     }
-
 
     @Override
     public void setInventoryLithium(DefaultedList<ItemStack> inventory){

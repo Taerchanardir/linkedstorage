@@ -15,20 +15,10 @@ public class SimpleInventoryMixin implements ISimpleInventoryMixinInterface{
   @Mutable
   @Final
   public DefaultedList<ItemStack> stacks;
-  // THIS is how you write to a final...
-  // mixin into the class containing the final field
-  // use an interface to call get/set methods in the mixin
-  // it was an adventure getting here...
 
   public SimpleInventoryMixin(DefaultedList<ItemStack> stacks){
     this.stacks=stacks;
-    //throw new RuntimeException("Do not call <init>SimpleInventoryMixin(!)");
   }
-
-  //@Override don't need reading is ok
-  //public DefaultedList<ItemStack> getStacks(){
-  //  return this.stacks;
-  //}
 
   @Override
   public void setStacks(DefaultedList<ItemStack> stacks){
